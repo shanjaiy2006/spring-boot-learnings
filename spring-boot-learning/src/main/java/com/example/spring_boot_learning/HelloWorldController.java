@@ -1,5 +1,6 @@
 package com.example.spring_boot_learning;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,9 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/student")
 @RestController
 public class HelloWorldController {
+
+    @Autowired
+    private StudentService studentService;
+
     @GetMapping("/api")
     public String sayHello() {
-        return "Hello World";
+        return studentService.getStudentDetails();
     }
 
     @GetMapping("/{id}")
